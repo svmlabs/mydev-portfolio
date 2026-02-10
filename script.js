@@ -1,10 +1,14 @@
-const form = document.getElementById("contactForm");
-const msg = document.getElementById("msg");
+// Scroll fade-in for sections
+document.addEventListener("DOMContentLoaded", () => {
+  const elements = document.querySelectorAll(".fade-in");
 
-form.addEventListener("submit", function(e) {
-  e.preventDefault();
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.1 });
 
-  msg.innerText = "Message sent successfully! ✅";
-
-  form.reset();
+  elements.forEach(el => observer.observe(el));
 });
